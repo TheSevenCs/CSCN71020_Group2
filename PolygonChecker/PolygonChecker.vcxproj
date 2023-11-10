@@ -140,11 +140,16 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.c" />
+    <ClCompile Include="quadrilateralSolver.c" />
     <ClCompile Include="triangleSolver.c" />
+    <ClCompile Include="vector.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h" />
+    <ClInclude Include="point.h" />
+    <ClInclude Include="quadrilateralSolver.h" />
     <ClInclude Include="triangleSolver.h" />
+    <ClInclude Include="vector.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
