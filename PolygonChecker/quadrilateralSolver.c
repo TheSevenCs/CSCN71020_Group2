@@ -18,7 +18,7 @@ double getCornerByTwoVector(VECTOR ab, VECTOR ac) {
 	return angle;
 }
 
-
+//chris - 05 Nov
 char* analyzeRectangle(POINT* arr) {
 	char* result = "Not sure yet";
 	bool is_rectangle = false;
@@ -42,7 +42,7 @@ char* analyzeRectangle(POINT* arr) {
 		VECTOR dc = CreateVectorByPoint(*(arr + 3), *(arr + 2));
 		if (IsVectorEqual(ab, dc))
 			is_rectangle = true;
-	}
+  }
 	else if (fabs(angle_cad - 90) < ACCURACY) { // angle cad = 90,  if vector ac = db, then the shape is rectangle
 		VECTOR db = CreateVectorByPoint(*(arr + 3), *(arr + 1));
 		if (IsVectorEqual(ac, db))

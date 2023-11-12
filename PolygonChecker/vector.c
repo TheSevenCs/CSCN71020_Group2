@@ -1,4 +1,4 @@
-//CSCN71020 - Group2 - zongping cui - 05 NOV 
+//CSCN71020 - Group2 - zongping cui - Chris Mitskas - Vinh Le - 05 NOV 
 #pragma once
 #include "vector.h"
 #include <math.h>
