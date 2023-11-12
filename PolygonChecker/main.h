@@ -1,5 +1,6 @@
 #pragma once
 #include "point.h"
+#include "vector.h"
 
 void printWelcome();
 int printShapeMenu();

@@ -35,11 +35,24 @@ int main() {
 			break;
 		case 2: // 05 NOV
 			printf_s("Rectangle selected.\n");
+			
 			POINT RectanglePoints[4];
 			getRectanglePoints(RectanglePoints);
+			
+			VECTOR arrV[NUM_OF_SIDES_ON_Quadrilateral];
 
-			char* result1 = analyzeRectangle(RectanglePoints);
-			printf_s("%s\n", result1);
+			bool is_rectangle = analyzeRectangle(RectanglePoints, arrV);
+
+			double perimeter = calculatePerimeter(arrV);
+			if (is_rectangle) {
+				
+				printf_s("It is a rectangle, Perimeter: %lf , Area: %lf.\n", perimeter, arrV[0].length* arrV[1].length);
+			}
+			else {
+				printf_s("It is not a rectangle, Perimeter: %lf.\n", perimeter);
+			}
+
+			
 			break; 
 		case 0:
 			continueProgram = false;
