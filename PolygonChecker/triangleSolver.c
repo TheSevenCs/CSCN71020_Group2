@@ -46,16 +46,16 @@ bool isATriangle(int* sides, int* hypotneuseIndex)
 		return false;
 	}
 }
-int* angleCalculator(int* sides, int* hypotneuseIndex)
+int* angleCalculator(int* sides)
 {
-	int c = hypotneuseIndex, a, b, temp;
+	int *c, a, b, temp;
 	int angles[3];
 
-	if (!isATriangle) // Checks that its a triangle first
+	if (!isATriangle(sides, c)) // Checks that its a triangle first
 	{
 		return -1;
 	}
-	if (c == 3) // The if statements determine which two side lengths will be side a and b using side c as a reference
+	if (*c == 3) // The if statements determine which two side lengths will be side a and b using side c as a reference
 	{
 		a = 1, b = 2;
 	}
