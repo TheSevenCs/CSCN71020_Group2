@@ -3,6 +3,10 @@
 
 
 #include "point.h"
+#include "vector.h"
 #define M_PI 3.14159265358979323846
+#define NUM_OF_SIDES_ON_Quadrilateral 4
 
-char* analyzeRectangle(POINT* a);
+
+bool analyzeRectangle(POINT* a, VECTOR []);
+double calculatePerimeter(VECTOR* arrV);
