@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <stdbool.h>
 #include <math.h>
 #include "triangleSolver.h"
@@ -34,10 +35,10 @@ bool isATriangle(int* sides, int* hypotneuseIndex)
 		if (hypotenuse < sides[i])
 		{
 			hypotenuse = sides[i];
-			hypotneuseIndex == i; //saves hypotneuse location
+			*hypotneuseIndex = i; //saves hypotneuse location
 		}
 	}
-	if (sides[0] + sides[1] + sides[2] - hypotenuse >= hypotenuse) // The sum of two of the sides have to be greater than the hypotneuse for it to be a triangle
+	if (sides[0] + sides[1] + sides[2] - hypotenuse > hypotenuse) // The sum of two of the sides have to be greater than the hypotneuse for it to be a triangle
 	{
 		return true;
 	}
@@ -48,30 +49,38 @@ bool isATriangle(int* sides, int* hypotneuseIndex)
 }
 int* angleCalculator(int* sides)
 {
-	int *c, a, b, temp;
+	int c[1], a, b, temp;
 	int angles[3];
 
 	if (!isATriangle(sides, c)) // Checks that its a triangle first
 	{
 		return -1;
 	}
-	if (*c == 3) // The if statements determine which two side lengths will be side a and b using side c as a reference
+	if (*c == 2) // The if statements determine which two side lengths will be side a and b using side c as a reference
 	{
-		a = 1, b = 2;
+		b = 0, a = 1;
 	}
-	else if (c == 2)
+	else if (*c == 1)
 	{
-		a = 1, b = 3;
+		b = 0, a = 2;
 	}
-	else if (c == 1)
+	else if (*c == 0)
 	{
-		a = 2, b = 3;
+		b = 1, a = 2;
 	}
-	angles[2] = acos((pow(sides[a], 2) + pow(sides[b], 2) - pow(sides[c], 2)) / 2 * sides[a] * sides[b]) * 180.0 / M_PI; // Calculates angle C of the rectangle with the knowledge of the largest side length using the equation cosC = a^2 + b^2 - c^2 / 2ab
-	
-	temp = sin(angles[2]) / sides[c]; // Calculates c/sinC for the next equation
-	angles[0] = asin(temp * sides[a]) * 180.0 / M_PI; //Calculates for angle A using equation a/sinA = c/sinC
+	else
+	{
+		b = 0, a = 1;
+	}
+	// Calculate angles in radians from side length
+	double angleA = acos(((double)sides[b] * (double)sides[b] + ((double)sides[*c] * (double)sides[*c]) - (double)sides[a] * (double)sides[a]) / (2 * (double)sides[b] * (double)sides[*c]));
+	double angleB = acos(((double)sides[a] * (double)sides[a] + ((double)sides[*c] * (double)sides[*c]) - (double)sides[b] * (double)sides[b]) / (2 * (double)sides[a] * (double)sides[*c]));
+	double angleC = acos(((double)sides[a] * (double)sides[a] + (double)sides[b] * (double)sides[b] - ((double)sides[*c] * (double)sides[*c])) / (2 * (double)sides[a] * (double)sides[b]));
 
-	angles[1] = 180 - (angles[0] + angles[2]); // Uses the priciple that all 3 angles of a triangle have to equal up to 180 degrees to calculate the last angle (angle b)
+	// Convert angles to degrees
+	angles[0] = angleA * 180.0 / M_PI;
+	angles[1] = angleB * 180.0 / M_PI;
+	angles[2] = angleC * 180.0 / M_PI;
+
 	return angles;
 }

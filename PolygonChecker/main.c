@@ -20,10 +20,18 @@ int main() {
 		case 1:
 			printf_s("Triangle selected.\n");
 			int triangleSides[3] = { 0, 0, 0 };
-			int* triangleSidesPtr = getTriangleSides(triangleSides);
-			//printf_s("! %d\n", triangleSidesPtr[0]);
-			char* result = analyzeTriangle(triangleSidesPtr[0], triangleSidesPtr[1], triangleSidesPtr[2]);
+			int *triangleAngles;
+			getTriangleSides(triangleSides);
+
+			char* result = analyzeTriangle(triangleSides[0], triangleSides[1], triangleSides[2]);
 			printf_s("%s\n", result);
+			triangleAngles = angleCalculator(triangleSides);
+			if (*triangleAngles == -1) {
+				printf("Is not a triangle\n");
+				break;
+			}
+			
+			printf_s("The angles of the triangle are: %d, %d, %d", triangleAngles[0], triangleAngles[1], triangleAngles[2]);
 			break;
 		case 2: // 05 NOV
 			printf_s("Rectangle selected.\n");
