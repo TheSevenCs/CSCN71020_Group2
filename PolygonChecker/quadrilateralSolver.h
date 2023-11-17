@@ -17,6 +17,6 @@ double calculateArea(VECTOR,VECTOR);
 
 QUAD_TYPE analyzeQuad(POINT a[], VECTOR[]);
 
-bool analyzeConcaveByAngle(POINT[]);
+bool analyzeConcave(POINT[]);
 
 double calculatePerimeter(VECTOR[]);

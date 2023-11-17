@@ -35,7 +35,7 @@ double calculateArea(VECTOR v1, VECTOR v2) {
 }
 
 
-bool analyzeConcaveByAngle(POINT arr[]) {
+bool analyzeConcave(POINT arr[]) {
 	
 	bool is_concave = false;
 
