@@ -53,10 +53,10 @@ int main() {
 				break;
 			case CONCAVE:
 				perimeter = calculatePerimeter(arrV);
-				printf_s("It is a concave shape, its Perimeter could be: %lf.\n", perimeter);
+				printf_s("It is a concave shape.\n"); //TODO
 				break;
 			default:
-				printf_s("WARN: No shape match.\n", perimeter);
+				printf_s("WARN: No shape match.\n");
 				
 			}
 		
