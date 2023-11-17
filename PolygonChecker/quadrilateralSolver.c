@@ -29,31 +29,69 @@ double calculatePerimeter(VECTOR* arrV) {
 	
 }
 
-double calculateSquare() {
 
+double calculateArea(VECTOR v1, VECTOR v2) {
+	return v1.length * v2.length;
 }
 
 
-double maxOfD(double* arr, int size) {
-	float max = *arr;
+bool analyzeConcaveByAngle(POINT arr[]) {
 	
-	for (int i = 0; i < size; i++)
-		if (max < *(arr + 1)) {
-			max = *(arr + 1);
+	bool is_concave = false;
+
+	for (int i = 0;i < 4;i++) {
+		/*ret_corners[i].sequence_index = i;*/
+		POINT vertex = arr[i];
+
+		VECTOR tmpV[3];
+		for (int j = 0;j < 3;j++) {  // Combination C(3,1)
+			int tail = i;
+			int head = i + j + 1;
+			head > 3 ? head -= 4 : head;
+			tmpV[j] = CreateVectorByPoint(arr[tail], arr[head]);
 		}
-	
-	return max;
-}
 
+		int counting = 0;
+		double angles[3];
+		double corner_angle = 0;
+		for (int j = 0;j < 3;j++) {  // Combination C(3,2)
+			int start = j;
+			int end = j + 1;
+			end > 2 ? end -= 3 : end;
+			double angle = getCornerByTwoVector(tmpV[start], tmpV[end]);
+			angles[j] = angle;
+			if (angle > 90 && fabs(angle - 90) > ACCURACY)
+				counting++;
+			if (corner_angle < angle)
+				corner_angle = angle;  // take the largest one for corner
+		}
+
+		/*ret_corners[i].angle = corner_angle;*/
+
+		if (counting == 2) {
+			//ret_corners[i].interior = true;
+			is_concave = true;
+		}
+	}
+
+	return is_concave;
+}
 
 //chris - 05 Nov
-bool analyzeRectangle(POINT* arr, VECTOR ret_arr_V[]) {
-	char* result = "Not sure yet";
-	bool is_rectangle = false;
+QUAD_TYPE analyzeQuad(POINT arr[], VECTOR ret_arr_V[]) {
+	//char* result = "Not sure yet";
+	QUAD_TYPE ret = QUADRILATERAL;
+	//CORNER ret_corners[NUM_OF_SIDES_ON_Quadrilateral];
+	if (analyzeConcaveByAngle(arr)) {
+		
+		return CONCAVE;
+	}
 	
-	VECTOR ab = CreateVectorByPoint(*(arr), *(arr + 1));
-	VECTOR ac = CreateVectorByPoint(*(arr), *(arr + 2));
-	VECTOR ad = CreateVectorByPoint(*(arr), *(arr + 3));
+
+
+	VECTOR ab = CreateVectorByPoint(arr[0], arr[1]);
+	VECTOR ac = CreateVectorByPoint(arr[0], arr[2]);
+	VECTOR ad = CreateVectorByPoint(arr[0], arr[3]);
 
 	double angle_bac = getCornerByTwoVector(ab, ac); // angle of bac
 
@@ -75,7 +113,7 @@ bool analyzeRectangle(POINT* arr, VECTOR ret_arr_V[]) {
 			ret_arr_V[1] = ac;
 			ret_arr_V[2] = cd;
 			ret_arr_V[3] = CreateVectorByPoint(*(arr + 1), *(arr + 3));
-			is_rectangle = true;
+			ret = RECTANGLE;
 		}	
 	}
 	else if (fabs(angle_bad - 90) < ACCURACY) { // angle bad = 90,  if vector ab = dc, then the shape is rectangle
@@ -85,7 +123,7 @@ bool analyzeRectangle(POINT* arr, VECTOR ret_arr_V[]) {
 			ret_arr_V[1] = ad;
 			ret_arr_V[2] = dc;
 			ret_arr_V[3] = CreateVectorByPoint(*(arr + 1), *(arr + 2)); //bc
-			is_rectangle = true;
+			ret = RECTANGLE;
 		}
 			
   }
@@ -96,7 +134,7 @@ bool analyzeRectangle(POINT* arr, VECTOR ret_arr_V[]) {
 			ret_arr_V[1] = ad;
 			ret_arr_V[2] = db;
 			ret_arr_V[3] = CreateVectorByPoint(*(arr + 2), *(arr + 1)); //cb
-			is_rectangle = true;
+			ret = RECTANGLE;
 		}
 			
 	}
@@ -104,7 +142,7 @@ bool analyzeRectangle(POINT* arr, VECTOR ret_arr_V[]) {
 	
 
 
-	if (!is_rectangle) {
+	if (ret != RECTANGLE) {
 		VECTOR cd = CreateVectorByPoint(*(arr + 2), *(arr + 3));
 		VECTOR bd = CreateVectorByPoint(*(arr + 1), *(arr + 3));
 		VECTOR arrV[NUM_OF_SIDES_ON_Quadrilateral] = { ab,ac,cd,bd };
@@ -114,5 +152,5 @@ bool analyzeRectangle(POINT* arr, VECTOR ret_arr_V[]) {
 	}
 
 	// return msg
-	return is_rectangle;
+	return ret;
 }

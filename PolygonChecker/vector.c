@@ -18,7 +18,8 @@ VECTOR CreateVectorByPoint(POINT a, POINT b) {
 	float y = b.y - a.y;
 	v.x = x;
 	v.y = y;
-	v.length = sqrt(x * x + y * y);
+	double length = sqrt(x * x + y * y);
+	v.length = length;
 	return v;
 
 }

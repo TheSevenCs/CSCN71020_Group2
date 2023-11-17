@@ -50,13 +50,10 @@ int main() {
 			case QUADRILATERAL:
 				perimeter = calculatePerimeter(arrV);
 				printf_s("It is not a rectangle, Perimeter: %lf.\n", perimeter);
-				break;
 			case CONCAVE:
 				perimeter = calculatePerimeter(arrV);
-				printf_s("It is a concave shape, its Perimeter could be: %lf.\n", perimeter);
-				break;
-			default:
-				printf_s("WARN: No shape match.\n", perimeter);
+				printf_s("It is a concave shape, its Preimeter could be: %lf.\n", perimeter); //TODO
+
 				
 			}
 		

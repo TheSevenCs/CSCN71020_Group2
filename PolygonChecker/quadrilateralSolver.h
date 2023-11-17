@@ -7,6 +7,16 @@
 #define M_PI 3.14159265358979323846
 #define NUM_OF_SIDES_ON_Quadrilateral 4
 
+typedef enum quadrilateral_type {
+	QUADRILATERAL,RECTANGLE, CONCAVE  //TODO: Parallelogram,Trapezoid
+}QUAD_TYPE;
 
-bool analyzeRectangle(POINT* a, VECTOR []);
-double calculatePerimeter(VECTOR* arrV);
+
+double calculateArea(VECTOR,VECTOR);
+
+
+QUAD_TYPE analyzeQuad(POINT a[], VECTOR[]);
+
+bool analyzeConcaveByAngle(POINT[]);
+
+double calculatePerimeter(VECTOR[]);
