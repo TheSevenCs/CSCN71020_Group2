@@ -11,12 +11,13 @@ typedef enum quadrilateral_type {
 	QUADRILATERAL,RECTANGLE, CONCAVE  //TODO: Parallelogram,Trapezoid
 }QUAD_TYPE;
 
+//double getCornerByTwoVector(VECTOR ab, VECTOR ac);
 
 double calculateArea(VECTOR,VECTOR);
 
 
 QUAD_TYPE analyzeQuad(POINT a[], VECTOR[]);
 
-bool analyzeConcave(POINT[]);
+bool analyzeConcaveOrLine(POINT[]);
 
 double calculatePerimeter(VECTOR[]);

@@ -35,7 +35,7 @@ double calculateArea(VECTOR v1, VECTOR v2) {
 }
 
 
-bool analyzeConcave(POINT arr[]) {
+bool analyzeConcaveOrLine(POINT arr[]) {
 	
 	bool is_concave = false;
 
@@ -50,6 +50,14 @@ bool analyzeConcave(POINT arr[]) {
 			head > 3 ? head -= 4 : head;
 			tmpV[j] = CreateVectorByPoint(arr[tail], arr[head]);
 		}
+
+
+		for (int j = 0;j < 3;j++) {
+			if (tmpV[j].length == 0) {
+				return true;
+			}
+		}
+
 
 		int counting = 0;
 		double angles[3];
@@ -82,7 +90,7 @@ QUAD_TYPE analyzeQuad(POINT arr[], VECTOR ret_arr_V[]) {
 	//char* result = "Not sure yet";
 	QUAD_TYPE ret = QUADRILATERAL;
 	//CORNER ret_corners[NUM_OF_SIDES_ON_Quadrilateral];
-	if (analyzeConcaveByAngle(arr)) {
+	if (analyzeConcaveOrLine(arr)) {
 		
 		return CONCAVE;
 	}

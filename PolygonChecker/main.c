@@ -52,8 +52,7 @@ int main() {
 				printf_s("It is not a rectangle, Perimeter: %lf.\n", perimeter);
 				break;
 			case CONCAVE:
-				perimeter = calculatePerimeter(arrV);
-				printf_s("It is a concave shape.\n"); //TODO
+				printf_s("It is not a quadrilateral or is a concave shape, no definite perimeter.\n"); 
 				break;
 			default:
 				printf_s("WARN: No shape match.\n");
