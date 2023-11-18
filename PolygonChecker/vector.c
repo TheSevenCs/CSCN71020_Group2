@@ -29,7 +29,7 @@ VECTOR CreateVectorByPoint(POINT a, POINT b) {
 bool IsVectorEqual(VECTOR a, VECTOR b) {
 
 	if (fabs(a.length - b.length) < ACCURACY && fabs(a.x - b.x) < ACCURACY && fabs(a.y - b.y) < ACCURACY) {
-		return true;
+		return true; 
 	}
 
 	return false;
