@@ -31,7 +31,7 @@ extern "C" bool IsVectorEqual(VECTOR a, VECTOR b);
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
-namespace Tests
+namespace RectangleTests
 {
 	TEST_CLASS(Tests)
 	{
@@ -348,8 +348,5 @@ namespace Tests
 			Assert::AreEqual(expV[2].length, retV[2].length);
 			Assert::AreEqual(expV[3].length, retV[3].length);
 		}
-		
 	};
-
-			
 }
