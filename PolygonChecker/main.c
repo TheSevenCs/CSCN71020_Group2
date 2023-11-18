@@ -35,24 +35,30 @@ int main() {
 			break;
 		case 2: // 05 NOV
 			printf_s("Rectangle selected.\n");
-			
-			POINT RectanglePoints[4];
-			getRectanglePoints(RectanglePoints);
+			double perimeter;
+			POINT QuadPoints[4];
+			getQuadPoints(QuadPoints);
 			
 			VECTOR arrV[NUM_OF_SIDES_ON_Quadrilateral];
 
-			bool is_rectangle = analyzeRectangle(RectanglePoints, arrV);
-
-			double perimeter = calculatePerimeter(arrV);
-			if (is_rectangle) {
-				
-				printf_s("It is a rectangle, Perimeter: %lf , Area: %lf.\n", perimeter, arrV[0].length* arrV[1].length);
-			}
-			else {
+			switch (analyzeQuad(QuadPoints, arrV)) 
+			{
+			case RECTANGLE:
+				perimeter = calculatePerimeter(arrV);
+				printf_s("It is a rectangle, Perimeter: %lf , Area: %lf.\n", perimeter, calculateArea(arrV[0], arrV[1])); 
+				break;
+			case QUADRILATERAL:
+				perimeter = calculatePerimeter(arrV);
 				printf_s("It is not a rectangle, Perimeter: %lf.\n", perimeter);
+				break;
+			case CONCAVE:
+				printf_s("It is not a quadrilateral or is a concave shape, no definite perimeter.\n"); 
+				break;
+			default:
+				printf_s("WARN: No shape match.\n");
+				
 			}
-
-			
+		
 			break; 
 		case 0:
 			continueProgram = false;
@@ -98,7 +104,7 @@ int* getTriangleSides(int* triangleSides) {
 
 // take 4 points in 2D-coordinate system from user, order insensitive
 // 05 NOV
-POINT* getRectanglePoints(POINT RectanglePoints[]) {
+POINT* getQuadPoints(POINT QuadPoints[]) {
 	printf_s("A rectangle require four points in coordinate system, each takes 2 input for 2D-coordinate. \n");
 	
 	for (int i = 0; i < 4; i++)
@@ -107,9 +113,9 @@ POINT* getRectanglePoints(POINT RectanglePoints[]) {
 		printf_s("Enter x and y values in x,y format for point %d :\n", i+1);
 		int numConverted = scanf_s("%f,%f", &x, &y);  // TODO: format check 
 
-		RectanglePoints[i].x = x;
-		RectanglePoints[i].y = y;
+		QuadPoints[i].x = x;
+		QuadPoints[i].y = y;
 	}
-	return RectanglePoints;
+	return QuadPoints;
 }
 

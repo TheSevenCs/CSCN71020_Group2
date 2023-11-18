@@ -5,4 +5,4 @@
 void printWelcome();
 int printShapeMenu();
 int* getTriangleSides(int* triangleSides);
-POINT* getRectanglePoints(POINT RectanglePoints[]); //05 NOV
+POINT* getQuadPoints(POINT QuadPoints[]); //05 NOV
