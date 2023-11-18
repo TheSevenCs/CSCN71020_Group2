@@ -78,9 +78,9 @@ int* angleCalculator(int* sides)
 	double angleC = acos(((double)sides[a] * (double)sides[a] + (double)sides[b] * (double)sides[b] - ((double)sides[*c] * (double)sides[*c])) / (2 * (double)sides[a] * (double)sides[b]));
 
 	// Convert angles to degrees
-	angles[0] = angleA * 180.0 / M_PI;
-	angles[1] = angleB * 180.0 / M_PI;
-	angles[2] = angleC * 180.0 / M_PI;
+	angles[0] = round(angleA * 180.0 / M_PI);
+	angles[1] = round(angleB * 180.0 / M_PI);
+	angles[2] = round(angleC * 180.0 / M_PI);
 
 	return angles;
 }
