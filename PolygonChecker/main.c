@@ -18,26 +18,26 @@ int main() {
 		switch (shapeChoice)
 		{
 		case 1:
-			printf_s("Triangle selected.\n");
+			printf_s("Triangle selected.\n\n");
 			int triangleSides[3] = { 0, 0, 0 };
 			int *triangleAngles;
 			getTriangleSides(triangleSides);
 
 			char* result = analyzeTriangle(triangleSides[0], triangleSides[1], triangleSides[2]);
-			printf_s("%s\n", result);
+			printf_s("\nTriangle type: %s\n", result);
 			triangleAngles = angleCalculator(triangleSides);
-			if (*triangleAngles == -1) {
-				printf("Is not a triangle\n");
+			if (triangleAngles == -1) {
 				break;
 			}
 			
 			printf_s("The angles of the triangle are: %d, %d, %d", triangleAngles[0], triangleAngles[1], triangleAngles[2]);
 			break;
 		case 2: // 05 NOV
-			printf_s("Rectangle selected.\n");
+			printf_s("Rectangle selected.\n\n");
 			double perimeter;
 			POINT QuadPoints[4];
 			getQuadPoints(QuadPoints);
+			printf_s("\n");
 			
 			VECTOR arrV[NUM_OF_SIDES_ON_Quadrilateral];
 
@@ -73,7 +73,7 @@ int main() {
 }
 
 void printWelcome() {
-	printf_s("\n");
+	printf_s("\n\n");
 	printf_s(" **********************\n");
 	printf_s("**     Welcome to     **\n");
 	printf_s("**   Polygon Checker  **\n");
@@ -105,7 +105,7 @@ int* getTriangleSides(int* triangleSides) {
 // take 4 points in 2D-coordinate system from user, order insensitive
 // 05 NOV
 POINT* getQuadPoints(POINT QuadPoints[]) {
-	printf_s("A rectangle require four points in coordinate system, each takes 2 input for 2D-coordinate. \n");
+	printf_s("\nA rectangle require four points in coordinate system, each takes 2 input for 2D-coordinate. \n");
 	
 	for (int i = 0; i < 4; i++)
 	{

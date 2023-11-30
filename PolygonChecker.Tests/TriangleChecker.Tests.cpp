@@ -194,7 +194,7 @@ namespace TriangleCheckerTests
 	TEST_CLASS(GoodInputTriangleAngleCalculatorTests)
 	{
 	public:
-		TEST_METHOD(Sides_5_6_10_Return_27_22_130) // This is for a scalene triangle with the side lengths 5, 6, 10
+		TEST_METHOD(Sides_5_6_10_Return_27_22_131) // This is for a scalene triangle with the side lengths 5, 6, 10
 		{
 			//Arrange
 			int sides[TRIANGLE_SIDES_ARRAY_SIZE] = { 5, 6, 10 };
